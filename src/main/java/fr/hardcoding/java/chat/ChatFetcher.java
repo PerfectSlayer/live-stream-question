@@ -28,7 +28,9 @@ import static com.google.api.services.youtube.YouTubeScopes.YOUTUBE_READONLY;
 import static java.util.logging.Level.WARNING;
 
 /**
- * @author jcdenton
+ * This class periodically fetch live chat message to store them to model and send them through web socket.
+ *
+ * @author Bruce BUJON (bruce.bujon(at)gmail(dot)com)
  */
 public class ChatFetcher {
     private static final Logger LOGGER = Logger.getLogger(ChatFetcher.class.getName());
@@ -36,9 +38,9 @@ public class ChatFetcher {
      * Common fields to retrieve for chat messages
      */
     private static final String LIVE_CHAT_FIELDS =
-            "items(authorDetails(channelId,displayName,isChatModerator,isChatOwner,isChatSponsor,"
-                    + "profileImageUrl),snippet(displayMessage,superChatDetails,publishedAt)),"
-                    + "nextPageToken,pollingIntervalMillis";
+            "items(authorDetails(displayName,profileImageUrl),snippet(displayMessage))," +
+                    "nextPageToken," +
+                    "pollingIntervalMillis";
 
     /**
      * The video identifier.
