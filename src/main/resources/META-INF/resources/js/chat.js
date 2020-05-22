@@ -11,6 +11,15 @@ function loadChat() {
         })
 }
 
+function openSocket() {
+    const socket = new WebSocket('ws://' + window.location.host + '/chat');
+    socket.addEventListener('message', function (event) {
+        const chatMessage = JSON.parse(event.data);
+        liveChatList.append(createChatElement(chatMessage));
+        liveChatList.scrollTop(liveChatList[0].scrollHeight);
+    });
+}
+
 function createChatElement(chatMessage) {
     return $("<li class=\"list-group-item chatMessage\">" +
         "    <img src=\"" + chatMessage.profileUrl + "\">" +
@@ -33,3 +42,4 @@ function select(chatMessageId) {
 }
 
 loadChat();
+openSocket();

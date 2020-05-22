@@ -1,3 +1,8 @@
+#liveChatList {
+    max-height: 90vh;
+    overflow: auto;
+}
+
 .list-group-item.chatMessage {
     padding-top: 2px;
     padding-bottom: 2px;

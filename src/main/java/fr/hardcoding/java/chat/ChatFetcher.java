@@ -31,7 +31,7 @@ import static java.util.logging.Level.WARNING;
  * @author jcdenton
  */
 public class ChatFetcher {
-    private static final Logger LOGGER = Logger.getLogger("ListenerBean");
+    private static final Logger LOGGER = Logger.getLogger(ChatFetcher.class.getName());
     /**
      * Common fields to retrieve for chat messages
      */
@@ -47,6 +47,8 @@ public class ChatFetcher {
     String videoId;
     @Inject
     ChatModel model;
+    @Inject
+    ChatSocket socket;
     /**
      * Define a global instance of a Youtube object, which will be used
      * to make YouTube Data API requests.
@@ -94,7 +96,7 @@ public class ChatFetcher {
      * @param youtube The object is used to make YouTube Data API requests.
      * @return A liveChatId, or null if not found.
      */
-    static String getLiveChatId(YouTube youtube) throws IOException {
+    private static String getLiveChatId(YouTube youtube) throws IOException {
         // Get signed in user's liveChatId
         YouTube.LiveBroadcasts.List broadcastList = youtube
                 .liveBroadcasts()
@@ -120,7 +122,7 @@ public class ChatFetcher {
      * @param videoId The videoId associated with the live broadcast.
      * @return A liveChatId, or null if not found.
      */
-    String getLiveChatId(YouTube youtube, String videoId) throws IOException {
+    private String getLiveChatId(YouTube youtube, String videoId) throws IOException {
         // Get liveChatId from the video
         YouTube.Videos.List videoList = youtube.videos()
                 .list("liveStreamingDetails")
@@ -171,6 +173,7 @@ public class ChatFetcher {
                                     .map(ChatFetcher.this::convert)
                                     .collect(Collectors.toList());
                             ChatFetcher.this.model.addAll(messages);
+                            messages.forEach(ChatFetcher.this.socket::send);
 
                             // Request the next page of messages
                             listChatMessages(
@@ -190,6 +193,6 @@ public class ChatFetcher {
         LiveChatMessageAuthorDetails authorDetails = liveChatMessage.getAuthorDetails();
         String userName = authorDetails.getDisplayName();
         String profileUrl = authorDetails.getProfileImageUrl();
-        return new ChatMessage(uuid, text, userName, profileUrl);
+        return new ChatMessage(uuid, userName, text, profileUrl);
     }
 }
