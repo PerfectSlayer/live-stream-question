@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>YouTube Live Questions</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+          integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css"
+          integrity="sha256-h20CPZ0QyXlBuAw7A+KluUYx/3pK+c7lYEpqLTlxjYQ=" crossorigin="anonymous"/>
+    <link rel="stylesheet" type="text/css" href="css/questions.css">
+</head>
+<body>
+
+<div class="container">
+
+    <div class="row">
+        <div class="col">
+            <h2>Live chat</h2>
+
+        </div>
+        <div class="col">
+            <h2>Questions</h2>
+            <h3>Selected</h3>
+            <!--            <div class="list-group" id="questionList">-->
+            <ul class="list-group" id="questionList">
+                <li class="list-group-item question">
+                    <img src="https://avatars3.githubusercontent.com/u/1766222?s=460&u=1567973b4b7166af57d0c534a51ad6b5922aa0e9&v=4">
+                    <div class="questionActions">
+                        <i class="far fa-bookmark fa-lg"></i>
+                        <i class="fas fa-trash-alt fa-lg"></i>
+                    </div>
+                    <div class="questionUsername">Bruce</div>
+                    <div class="questionText">Est-ce que ça marche bien ?</div>
+                </li>
+                <li class="list-group-item">
+                    <span>Bruce</span>
+                    <div>Est-ce que ça marche bien ?</div>
+                </li>
+            </ul>
+            <h3>Add question</h3>
+            <form>
+                <div class="form-group row">
+                    <label for="username" class="col-sm-2 col-form-label">Username</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="username">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="question" class="col-sm-2 col-form-label">Question</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="question">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-10">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+    </div>
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+        crossorigin="anonymous"></script>
+<script src="js/questions.js"></script>
+</body>
+</html>

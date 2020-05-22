@@ -1,0 +1,22 @@
+.question img {
+    height: 64px;
+    width: 64px;
+    border-radius: 50%;
+    float: left;
+    margin-right: 0.75rem;
+    background-color: rgba(211, 211, 211, 0.5);
+    padding: 2px;
+}
+
+.question .questionUsername {
+    font-style: italic;
+    font-weight: bold;
+}
+
+.question .questionActions {
+    float: right;
+}
+
+.question .questionActions i {
+    margin: 8px;
+}
