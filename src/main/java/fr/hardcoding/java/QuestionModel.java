@@ -6,6 +6,7 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.UUID;
 
 /**
@@ -17,6 +18,7 @@ import java.util.UUID;
 public class QuestionModel {
     private static final Comparator<Question> QUESTION_SORT = Comparator.comparing(question -> question.uuid);
     private final Map<UUID, Question> questions;
+    private Question promoted;
 
     public QuestionModel() {
         this.questions = new HashMap<>();
@@ -34,7 +36,27 @@ public class QuestionModel {
     }
 
     public boolean remove(UUID uuid) {
+        if (this.promoted != null && this.promoted.uuid.equals(uuid)) {
+            return false;
+        }
         return this.questions.remove(uuid) != null;
+    }
+
+    public Optional<Question> getPromoted() {
+        return Optional.ofNullable(this.promoted);
+    }
+
+    public boolean promote(UUID uuid) {
+        Question question = this.questions.get(uuid);
+        if (question == null) {
+            return false;
+        }
+        this.promoted = question;
+        return true;
+    }
+
+    public void demote() {
+        this.promoted = null;
     }
 
     private void addSampleData() {

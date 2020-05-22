@@ -15,8 +15,8 @@ function createQuestionElement(question) {
     return $("<li class=\"list-group-item question\">" +
         "    <img src=\"" + question.profileUrl + "\">" +
         "    <div class=\"questionActions\">" +
-        "         <a  href='#' onclick='promote(\"" + question.uuid + "\")'><i class=\"far fa-bookmark fa-lg\"></i></a>" +
-        "         <a href='#' onclick='removeQuestion(\"" + question.uuid + "\")'><i class=\"fas fa-trash-alt fa-lg\"></i></a>" +
+        "         <a href='#' onclick='promote(\"" + question.uuid + "\")' title='Promote to tile stream'><i class=\"far fa-bookmark fa-lg\"></i></a>" +
+        "         <a href='#' onclick='removeQuestion(\"" + question.uuid + "\")' title='Remove from selected'><i class=\"fas fa-trash-alt fa-lg\"></i></a>" +
         "    </div>" +
         "    <div class=\"questionUsername\">" + question.userName + "</div>" +
         "    <div class=\"questionText\">" + question.text + "</div>" +
@@ -40,14 +40,6 @@ function removeQuestion(questionId) {
     fetch("/questions/" + questionId, {
         method: "DELETE"
     }).then(_ => loadQuestions());
-}
-
-function promote(questionId) {
-
-}
-
-function demote() {
-
 }
 
 const addQuestionForm = $('#addQuestionForm');
