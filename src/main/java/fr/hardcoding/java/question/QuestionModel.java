@@ -1,4 +1,4 @@
-package fr.hardcoding.java.model;
+package fr.hardcoding.java.question;
 
 import javax.enterprise.context.ApplicationScoped;
 import java.util.ArrayList;

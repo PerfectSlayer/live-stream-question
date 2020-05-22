@@ -1,8 +1,5 @@
-package fr.hardcoding.java.endpoint;
+package fr.hardcoding.java.question;
 
-
-import fr.hardcoding.java.model.Question;
-import fr.hardcoding.java.model.QuestionModel;
 
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
