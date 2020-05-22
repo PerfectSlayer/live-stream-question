@@ -1,4 +1,4 @@
-package fr.hardcoding.java;
+package fr.hardcoding.java.model;
 
 import javax.enterprise.context.ApplicationScoped;
 import java.util.ArrayList;
