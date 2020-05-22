@@ -18,6 +18,7 @@ import javax.enterprise.event.Observes;
 import javax.inject.Inject;
 import java.io.IOException;
 import java.util.List;
+import java.util.Optional;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.UUID;
@@ -45,8 +46,9 @@ public class ChatFetcher {
     /**
      * The video identifier.
      */
+    @SuppressWarnings("OptionalUsedAsFieldOrParameterType")
     @ConfigProperty(name = "video.id")
-    String videoId;
+    Optional<String> videoId;
     @Inject
     ChatModel model;
     @Inject
@@ -73,9 +75,9 @@ public class ChatFetcher {
                     .setApplicationName("youtube-live-stream-question").build();
 
             // Check the liveChatId
-            String liveChatId = this.videoId == null ?
+            String liveChatId = this.videoId.isEmpty() ?
                     getLiveChatId(youtube) :
-                    getLiveChatId(youtube, this.videoId);
+                    getLiveChatId(youtube, this.videoId.get());
             if (liveChatId == null) {
                 LOGGER.severe("Unable to find a live chat id.");
                 System.exit(1);
