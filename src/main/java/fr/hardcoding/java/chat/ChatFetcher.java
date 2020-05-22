@@ -20,7 +20,9 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.UUID;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 import static com.google.api.services.youtube.YouTubeScopes.YOUTUBE_READONLY;
 import static java.util.logging.Level.WARNING;
@@ -29,6 +31,7 @@ import static java.util.logging.Level.WARNING;
  * @author jcdenton
  */
 public class ChatFetcher {
+    private static final Logger LOGGER = Logger.getLogger("ListenerBean");
     /**
      * Common fields to retrieve for chat messages
      */
@@ -38,21 +41,18 @@ public class ChatFetcher {
                     + "nextPageToken,pollingIntervalMillis";
 
     /**
-     * The video live chat identifier.
+     * The video identifier.
      */
     @ConfigProperty(name = "video.id")
     String videoId;
-
     @Inject
     ChatModel model;
-
     /**
      * Define a global instance of a Youtube object, which will be used
      * to make YouTube Data API requests.
      */
     private YouTube youtube;
 
-    private static final Logger LOGGER = Logger.getLogger("ListenerBean");
 
     void onStart(@Observes StartupEvent ev) {
         LOGGER.info("The application is starting...");
@@ -166,17 +166,11 @@ public class ChatFetcher {
                                     .execute();
 
                             // Display messages and super chat details
-                            List<LiveChatMessage> messages = response.getItems();
-                            for (int i = 0; i < messages.size(); i++) {
-                                LiveChatMessage message = messages.get(i);
-                                ChatFetcher.this.model.add(convert(message));
-//                                LiveChatMessageSnippet snippet = message.getSnippet();
-//                                LOGGER.fine(buildOutput(
-//                                        snippet.getDisplayMessage(),
-//                                        message.getAuthorDetails(),
-//                                        snippet.getSuperChatDetails())
-//                                );
-                            }
+                            List<ChatMessage> messages = response.getItems()
+                                    .stream()
+                                    .map(ChatFetcher.this::convert)
+                                    .collect(Collectors.toList());
+                            ChatFetcher.this.model.addAll(messages);
 
                             // Request the next page of messages
                             listChatMessages(
@@ -191,11 +185,11 @@ public class ChatFetcher {
     }
 
     private ChatMessage convert(LiveChatMessage liveChatMessage) {
+        UUID uuid = UUID.randomUUID();
         String text = liveChatMessage.getSnippet().getDisplayMessage();
         LiveChatMessageAuthorDetails authorDetails = liveChatMessage.getAuthorDetails();
         String userName = authorDetails.getDisplayName();
         String profileUrl = authorDetails.getProfileImageUrl();
-        return new ChatMessage(text, userName, profileUrl);
+        return new ChatMessage(uuid, text, userName, profileUrl);
     }
-
 }

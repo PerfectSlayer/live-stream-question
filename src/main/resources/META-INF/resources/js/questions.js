@@ -14,12 +14,12 @@ function loadQuestions() {
 function createQuestionElement(question) {
     return $("<li class=\"list-group-item question\">" +
         "    <img src=\"" + question.profileUrl + "\">" +
-        "    <div class=\"questionActions\">" +
+        "    <div class=\"actions\">" +
         "         <a href='#' onclick='promote(\"" + question.uuid + "\")' title='Promote to tile stream'><i class=\"far fa-bookmark fa-lg\"></i></a>" +
         "         <a href='#' onclick='removeQuestion(\"" + question.uuid + "\")' title='Remove from selected'><i class=\"fas fa-trash-alt fa-lg\"></i></a>" +
         "    </div>" +
-        "    <div class=\"questionUsername\">" + question.userName + "</div>" +
-        "    <div class=\"questionText\">" + question.text + "</div>" +
+        "    <div class=\"username\">" + question.userName + "</div>" +
+        "    <div class=\"text\">" + question.text + "</div>" +
         "</li>")
 }
 

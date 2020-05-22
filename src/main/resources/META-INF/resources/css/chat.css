@@ -1,0 +1,20 @@
+.list-group-item.chatMessage {
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
+
+.chatMessage img {
+    height: 32px;
+    width: 32px;
+    border-radius: 50%;
+    float: left;
+    margin-top: 5px;
+    margin-right: 0.75rem;
+    background-color: rgba(211, 211, 211, 0.5);
+    padding: 2px;
+}
+
+.chatMessage .actions {
+    margin-top: 5px;
+    float: right;
+}

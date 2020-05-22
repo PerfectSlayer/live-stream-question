@@ -30,11 +30,11 @@ function loadPromotion() {
 function createPromotionElement(question) {
     return $("<li class=\"list-group-item question\">" +
         "    <img src=\"" + question.profileUrl + "\">" +
-        "    <div class=\"questionActions\">" +
+        "    <div class=\"actions\">" +
         "         <a  href='#' onclick='demote(\"" + question.uuid + "\")' title='Demote from live stream'><i class=\"fas fa-bookmark fa-lg\"></i></a>" +
         "    </div>" +
-        "    <div class=\"questionUsername\">" + question.userName + "</div>" +
-        "    <div class=\"questionText\">" + question.text + "</div>" +
+        "    <div class=\"username\">" + question.userName + "</div>" +
+        "    <div class=\"text\">" + question.text + "</div>" +
         "</li>")
 }
 

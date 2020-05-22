@@ -12,16 +12,16 @@ h3 {
     padding: 2px;
 }
 
-.question .questionUsername {
+.question .username {
     font-style: italic;
     font-weight: bold;
 }
 
-.question .questionActions {
+.question .actions {
     float: right;
 }
 
-.question .questionActions i {
+.question .actions i {
     margin: 8px;
 }
 
