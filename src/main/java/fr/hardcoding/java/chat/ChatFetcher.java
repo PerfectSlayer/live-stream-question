@@ -26,6 +26,7 @@ import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 import static com.google.api.services.youtube.YouTubeScopes.YOUTUBE_READONLY;
+import static java.lang.Math.max;
 import static java.util.logging.Level.WARNING;
 
 /**
@@ -42,6 +43,10 @@ public class ChatFetcher {
             "items(authorDetails(displayName,profileImageUrl),snippet(displayMessage))," +
                     "nextPageToken," +
                     "pollingIntervalMillis";
+    /**
+     * The minimum delay between two API polls in milliseconds.
+     */
+    private static final long MIN_POLL_DELAY_MILLIS = 30 * 1000;
 
     /**
      * The video identifier.
@@ -183,7 +188,8 @@ public class ChatFetcher {
                             listChatMessages(
                                     liveChatId,
                                     response.getNextPageToken(),
-                                    response.getPollingIntervalMillis());
+                                    max(MIN_POLL_DELAY_MILLIS, response.getPollingIntervalMillis())
+                            );
                         } catch (Throwable t) {
                             LOGGER.log(WARNING, "Throwable: " + t.getMessage(), t);
                         }
