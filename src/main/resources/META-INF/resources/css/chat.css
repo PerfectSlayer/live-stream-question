@@ -19,6 +19,11 @@
     padding: 2px;
 }
 
+.chatMessage .username {
+    font-style: italic;
+    font-weight: bold;
+}
+
 .chatMessage .actions {
     margin-top: 5px;
     float: right;
