@@ -18,7 +18,7 @@ public class ChatModel {
 
     public ChatModel() {
         this.messages = new ArrayList<>();
-        addSample();
+        addHelpData();
     }
 
     public void addAll(List<ChatMessage> messages) {
@@ -35,18 +35,13 @@ public class ChatModel {
                 .findAny();
     }
 
-    private void addSample() {
+    private void addHelpData() {
         addAll(List.of(
                 new ChatMessage(
                         UUID.randomUUID(),
-                        "Test de message",
-                        "Bruce BUJON",
-                        "https://yt3.ggpht.com/-dhsyBDXOnaU/AAAAAAAAAAI/AAAAAAAAAAA/fEaE_-bKlOc/s88-c-k-no-mo-rj-c0xffffff/photo.jpg"
-                ), new ChatMessage(
-                        UUID.randomUUID(),
-                        "Test 2",
-                        "Bruce BUJON",
-                        "https://yt3.ggpht.com/-dhsyBDXOnaU/AAAAAAAAAAI/AAAAAAAAAAA/fEaE_-bKlOc/s88-c-k-no-mo-rj-c0xffffff/photo.jpg"
+                        "Help bot",
+                        "Here are the YouTube Live messages. You can pin any interesting question using the <i class=\"fas fa-thumbtack fa-lg\"></i> pin icon.",
+                        "/img/bot.png"
                 )
         ));
     }

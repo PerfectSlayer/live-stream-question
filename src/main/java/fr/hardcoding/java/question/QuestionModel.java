@@ -22,7 +22,7 @@ public class QuestionModel {
 
     public QuestionModel() {
         this.questions = new HashMap<>();
-        addSampleData();
+        addHelpData();
     }
 
     public void add(Question question) {
@@ -59,19 +59,19 @@ public class QuestionModel {
         this.promoted = null;
     }
 
-    private void addSampleData() {
+    private void addHelpData() {
         Question question = new Question(
-                UUID.randomUUID(),
-                "Bruce",
-                "Est-ce que ça marche ?",
-                "https://avatars3.githubusercontent.com/u/1766222?s=460&u=1567973b4b7166af57d0c534a51ad6b5922aa0e9&v=4"
+                UUID.fromString("a5ef1d1b-4b5c-4c62-93bb-9ec589d3fadb"),
+                "Help bot",
+                "All pinned questions are saved here. You can promote one to show it in the live stream using the <i class=\"far fa-bookmark fa-lg\"></i> promote button or discard them the <i class=\"fas fa-trash-alt fa-lg\"></i> discard button. Note you can only promote one question at a time.",
+                "/img/bot.png"
         );
         this.questions.put(question.uuid, question);
         question = new Question(
-                UUID.randomUUID(),
-                "Charles",
-                "Juste une question avec un texte assez long pour tester la taille de box parce qu'il y a de très grande chance que ce cas existe.",
-                "/img/question.png"
+                UUID.fromString("48bed050-8a5d-4b3d-b0cf-77a897fca175"),
+                "Help bot",
+                "You can also manually add some questions using for form below. <i class=\"fas fa-arrow-down\"></i>",
+                "/img/bot.png"
         );
         this.questions.put(question.uuid, question);
     }
