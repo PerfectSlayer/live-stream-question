@@ -2,8 +2,6 @@
 
 This project is a Java application that fetch YouTube live chat comments to display some in your live stream.
 
-TODO Add capture
-
 ## Features
 
 * Display chat comments
@@ -11,6 +9,16 @@ TODO Add capture
 * Promote a question to the live
 * Demote the live question
 * Unpin a question
+
+## Usage
+
+The moderation team can select questions from chat and promote them to live stream:
+
+![ts](screenshot.png)
+
+In the same time, the overlay will update to display the promoted question:
+
+![ts](overlay.png)
 
 ## Running the application in dev mode
 
