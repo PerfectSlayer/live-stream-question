@@ -27,7 +27,7 @@ function processQuestion(question) {
 
 function createQuestionElement(question) {
     return $('<div class="img-column">' +
-        '        <img src="' + question.profileUrl + '" alt="user avatar">' +
+        '        <img src="' + question.profileUrl + '" alt="user avatar" onerror="onImageError(this)">' +
         '    </div>' +
         '    <div class="text-column">' +
         '        <div class="username">' + question.userName + '</div>' +
@@ -41,6 +41,12 @@ function clearQuestion(callback) {
     }
     currentQuestion = null;
     questionDiv.fadeOut('fast', callback);
+}
+
+function onImageError(image) {
+    image.onerror = '';
+    image.src = '/img/question.png';
+    return true;
 }
 
 window.setInterval(loadQuestion, 2000);
