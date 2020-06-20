@@ -47,7 +47,11 @@ public class ChatFetcher {
      * The minimum delay between two API polls in milliseconds.
      */
     private static final long MIN_POLL_DELAY_MILLIS = 30 * 1000;
-
+    /**
+     * The chat feature flag.
+     */
+    @ConfigProperty(name = "video.chat", defaultValue = "true")
+    boolean featureEnabled;
     /**
      * The video identifier.
      */
@@ -66,6 +70,10 @@ public class ChatFetcher {
 
 
     void onStart(@Observes StartupEvent ev) {
+        if (!this.featureEnabled) {
+            LOGGER.info("Chat feature is disabled.");
+            return;
+        }
         LOGGER.info("The application is starting...");
         // This OAuth 2.0 access scope allows for read-only access to the
         // authenticated user's account, but not other types of account access.
