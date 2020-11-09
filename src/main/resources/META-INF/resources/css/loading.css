@@ -1,0 +1,21 @@
+body {
+    font-size: 80px;
+    font-family: "Roboto Black", Consolas, monospace;
+    max-width: 1800px;
+}
+
+.level.lightblue {
+    color: dodgerblue;
+}
+
+.level.darkblue {
+    color: darkblue;
+}
+
+.level.warning {
+    color: darkgoldenrod;
+}
+
+.level.error {
+    color: darkred;
+}
