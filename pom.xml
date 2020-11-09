@@ -21,6 +21,12 @@
         <quarkus.platform.version>1.4.2.Final</quarkus.platform.version>
         <surefire-plugin.version>2.22.1</surefire-plugin.version>
     </properties>
+    <repositories>
+        <repository>
+            <id>jcenter</id>
+            <url>https://jcenter.bintray.com/</url>
+        </repository>
+    </repositories>
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -65,6 +71,12 @@
             <groupId>com.google.oauth-client</groupId>
             <artifactId>google-oauth-client-jetty</artifactId>
             <version>${project.oauth.version}</version>
+        </dependency>
+        <!-- Twitch4j-->
+        <dependency>
+            <groupId>com.github.twitch4j</groupId>
+            <artifactId>twitch4j</artifactId>
+            <version>1.1.2</version>
         </dependency>
     </dependencies>
     <build>

@@ -21,6 +21,10 @@ public class ChatModel {
         addHelpData();
     }
 
+    public void add(ChatMessage message) {
+        this.messages.add(message);
+    }
+
     public void addAll(List<ChatMessage> messages) {
         this.messages.addAll(messages);
     }

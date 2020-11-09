@@ -1,4 +1,4 @@
-package fr.hardcoding.java.chat;
+package fr.hardcoding.java.chat.youtube;
 
 import com.google.api.client.auth.oauth2.Credential;
 import com.google.api.client.googleapis.json.GoogleJsonResponseException;
@@ -11,6 +11,10 @@ import com.google.api.services.youtube.model.LiveChatMessageListResponse;
 import com.google.api.services.youtube.model.Video;
 import com.google.api.services.youtube.model.VideoListResponse;
 import com.google.common.collect.Lists;
+import fr.hardcoding.java.chat.Auth;
+import fr.hardcoding.java.chat.ChatMessage;
+import fr.hardcoding.java.chat.ChatModel;
+import fr.hardcoding.java.chat.ChatSocket;
 import io.quarkus.runtime.StartupEvent;
 import org.eclipse.microprofile.config.inject.ConfigProperty;
 
@@ -34,8 +38,8 @@ import static java.util.logging.Level.WARNING;
  *
  * @author Bruce BUJON (bruce.bujon(at)gmail(dot)com)
  */
-public class ChatFetcher {
-    private static final Logger LOGGER = Logger.getLogger(ChatFetcher.class.getName());
+public class YouTubeChatFetcher {
+    private static final Logger LOGGER = Logger.getLogger(YouTubeChatFetcher.class.getName());
     /**
      * Common fields to retrieve for chat messages
      */
@@ -48,15 +52,15 @@ public class ChatFetcher {
      */
     private static final long MIN_POLL_DELAY_MILLIS = 30 * 1000;
     /**
-     * The chat feature flag.
+     * The YouTube chat feature flag.
      */
-    @ConfigProperty(name = "video.chat", defaultValue = "true")
+    @ConfigProperty(name = "youtube.chat.enabled", defaultValue = "false")
     boolean featureEnabled;
     /**
      * The video identifier.
      */
     @SuppressWarnings("OptionalUsedAsFieldOrParameterType")
-    @ConfigProperty(name = "video.id")
+    @ConfigProperty(name = "youtube.video.id")
     Optional<String> videoId;
     @Inject
     ChatModel model;
@@ -74,7 +78,7 @@ public class ChatFetcher {
             LOGGER.info("Chat feature is disabled.");
             return;
         }
-        LOGGER.info("The application is starting...");
+        LOGGER.info("Starting YouTube chat fetcher...");
         // This OAuth 2.0 access scope allows for read-only access to the
         // authenticated user's account, but not other types of account access.
         List<String> scopes = Lists.newArrayList(YOUTUBE_READONLY);
@@ -187,10 +191,10 @@ public class ChatFetcher {
                             // Display messages and super chat details
                             List<ChatMessage> messages = response.getItems()
                                     .stream()
-                                    .map(ChatFetcher.this::convert)
+                                    .map(YouTubeChatFetcher.this::convert)
                                     .collect(Collectors.toList());
-                            ChatFetcher.this.model.addAll(messages);
-                            messages.forEach(ChatFetcher.this.socket::send);
+                            YouTubeChatFetcher.this.model.addAll(messages);
+                            messages.forEach(YouTubeChatFetcher.this.socket::send);
 
                             // Request the next page of messages
                             listChatMessages(
