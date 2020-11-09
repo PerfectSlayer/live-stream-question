@@ -1,6 +1,6 @@
 # Youtube Live Stream Question
 
-This project is a Java application that fetch YouTube live chat comments to display some in your live stream.
+This project is a Java application that fetch YouTube live and Twitch chat comments to display some in your live stream.
 
 ## Features
 
