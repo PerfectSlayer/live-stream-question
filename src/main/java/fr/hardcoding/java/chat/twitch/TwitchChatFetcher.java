@@ -15,7 +15,6 @@ import org.eclipse.microprofile.config.inject.ConfigProperty;
 
 import javax.enterprise.event.Observes;
 import javax.inject.Inject;
-import java.util.Optional;
 import java.util.UUID;
 import java.util.logging.Logger;
 
@@ -27,8 +26,8 @@ public class TwitchChatFetcher {
     String clientId;
     @ConfigProperty(name = "twitch.client.secret", defaultValue = "")
     String clientSecret;
-    @ConfigProperty(name = "twitch.channel")
-    Optional<String> channel;
+    @ConfigProperty(name = "twitch.channel", defaultValue = "")
+    String channel;
     @Inject
     ChatModel model;
     @Inject
@@ -42,6 +41,10 @@ public class TwitchChatFetcher {
         }
         if (this.clientId.isBlank() || this.clientSecret.isBlank()) {
             LOGGER.warning("Twitch client id or secret is missing.");
+            return;
+        }
+        if (this.channel.isBlank()) {
+            LOGGER.warning("Twitch channel is missing.");
             return;
         }
         LOGGER.info("Starting Twitch chat fetcher...");
@@ -59,7 +62,7 @@ public class TwitchChatFetcher {
             this.model.add(chatMessage);
             this.socket.send(chatMessage);
         });
-        this.client.joinChannel("tperfectslayer");
+        this.client.joinChannel(this.channel);
     }
 
     void onStop(@Observes ShutdownEvent ev) {
