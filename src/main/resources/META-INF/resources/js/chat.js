@@ -22,7 +22,7 @@ function openSocket() {
 
 function createChatElement(chatMessage) {
     return $("<li class=\"list-group-item chatMessage\">" +
-        "    <img src=\"" + chatMessage.profileUrl + "\">" +
+        "    <img src=\"" + chatMessage.profileUrl + "\" alt=\"Profile picture\">" +
         "    <div class=\"actions\">" +
         "         <a href='#' onclick='select(\"" + chatMessage.uuid + "\")' title='Pin message as question'><i class=\"fas fa-thumbtack fa-lg\"></i></a>" +
         "    </div>" +
