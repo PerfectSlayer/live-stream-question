@@ -29,7 +29,7 @@ public class QuestionResource {
     QuestionModel model;
 
     @GET
-    public List<Question> hello() {
+    public List<Question> listQuestions() {
         return this.model.list();
     }
 

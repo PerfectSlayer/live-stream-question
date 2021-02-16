@@ -2,10 +2,7 @@ package fr.hardcoding.java.question;
 
 import javax.enterprise.context.ApplicationScoped;
 import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -16,30 +13,27 @@ import java.util.UUID;
  */
 @ApplicationScoped
 public class QuestionModel {
-    private static final Comparator<Question> QUESTION_SORT = Comparator.comparing(question -> question.uuid);
-    private final Map<UUID, Question> questions;
+    private final List<Question> questions;
     private Question promoted;
 
     public QuestionModel() {
-        this.questions = new HashMap<>();
+        this.questions = new ArrayList<>();
         addHelpData();
     }
 
     public void add(Question question) {
-        this.questions.put(question.uuid, question);
+        this.questions.add(question);
     }
 
     public List<Question> list() {
-        List<Question> sortedQuestions = new ArrayList<>(this.questions.values());
-        sortedQuestions.sort(QUESTION_SORT);
-        return sortedQuestions;
+        return this.questions;
     }
 
     public boolean remove(UUID uuid) {
         if (this.promoted != null && this.promoted.uuid.equals(uuid)) {
             return false;
         }
-        return this.questions.remove(uuid) != null;
+        return this.questions.removeIf(question -> question.uuid.equals(uuid));
     }
 
     public Optional<Question> getPromoted() {
@@ -47,11 +41,13 @@ public class QuestionModel {
     }
 
     public boolean promote(UUID uuid) {
-        Question question = this.questions.get(uuid);
-        if (question == null) {
+        Optional<Question> questionOptional = this.questions.stream()
+                .filter(question -> question.uuid.equals(uuid))
+                .findAny();
+        if (questionOptional.isEmpty()) {
             return false;
         }
-        this.promoted = question;
+        this.promoted = questionOptional.get();
         return true;
     }
 
@@ -66,13 +62,13 @@ public class QuestionModel {
                 "All pinned questions are saved here. You can promote one to show it in the live stream using the <i class=\"far fa-bookmark fa-lg\"></i> promote button or discard them the <i class=\"fas fa-trash-alt fa-lg\"></i> discard button. Note you can only promote one question at a time.",
                 "/img/bot.png"
         );
-        this.questions.put(question.uuid, question);
+        this.questions.add(question);
         question = new Question(
                 UUID.fromString("48bed050-8a5d-4b3d-b0cf-77a897fca175"),
                 "Help bot",
                 "You can also manually add some questions using for form below. <i class=\"fas fa-arrow-down\"></i>",
                 "/img/bot.png"
         );
-        this.questions.put(question.uuid, question);
+        this.questions.add(question);
     }
 }
