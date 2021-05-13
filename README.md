@@ -1,4 +1,4 @@
-# Youtube Live Stream Question
+# Live Stream Question
 
 This project is a Java application that fetch YouTube live and Twitch chat comments to display some in your live stream.
 
@@ -34,3 +34,23 @@ It produces the `youtube-live-question-1.0.0-runner.jar` file in the `/target` d
 Be aware that it’s not an _über-jar_ as the dependencies are copied into the `target/lib` directory.
 
 The application is now runnable using `java -jar target/youtube-live-question-1.0.0-runner.jar`.
+
+## Setting Up Twitch
+
+### Getting Credentials
+
+To get the chat comments, this application needs to be registered as a Twitch application [from the Twitch developers site](https://dev.twitch.tv/console/apps) to a get *client id* and a *client secret*.
+
+It also needs an *access token* (without specific permission other than the default public access) to read the user details (display name and profile picture URL). Access token can be generated from [Twitch Token Generator](https://twitchtokengenerator.com) (use custom scope token and remove all scopes).
+
+### Configuring Application
+
+The Twitch configuration can be applied using the following environment variables:
+
+```bash
+TWITCH_CHAT_ENABLED=true
+TWITCH_CHANNEL=<<channel_name>>
+TWITCH_CLIENT_ID=<<client_id>>
+TWITCH_CLIENT_SECRET=<<client_secret>>
+TWITCH_ACCESS_TOKEN=<<access_token>>
+```
