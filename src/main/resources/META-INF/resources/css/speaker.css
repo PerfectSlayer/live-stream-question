@@ -1,0 +1,25 @@
+html {
+    font-family: "Roboto Black", Consolas, monospace;
+    text-align: center;
+    font-size: x-large;
+}
+
+.avatar {
+    border: 3px solid #a30000;
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.4);
+    border-radius: 50%;
+    height: 200px;
+    width: 200px;
+    object-fit: cover;
+}
+
+.name {
+    color: #a30000;
+    font-size: xxx-large;
+    margin-bottom: 0;
+}
+
+.contact {
+    font-size: xx-large;
+    margin-top: 0;
+}
