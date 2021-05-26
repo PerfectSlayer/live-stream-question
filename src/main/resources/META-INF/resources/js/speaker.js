@@ -1,14 +1,8 @@
 const speakers = [
     {
-        name: "Andy Damevin",
-        avatar: "https://pbs.twimg.com/profile_images/449603516512735232/8qvErrfu_400x400.jpeg",
-        contact: "@Ia3andy",
-        title: ""
-    },
-    {
-        name: "Clément Escoffier",
-        avatar: "https://pbs.twimg.com/profile_images/1059135799147540480/AXaLqunC_400x400.jpg",
-        contact: "@clementplop",
+        name: "Lilian Benoit",
+        avatar: "https://pbs.twimg.com/profile_images/378800000064899867/1c623b76a82a2aa044f684136a028cf6_400x400.png",
+        contact: "@Lilian_Benoit",
         title: ""
     }
 ]

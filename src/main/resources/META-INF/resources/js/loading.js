@@ -30,8 +30,10 @@ const sentences = [
     'Peut-être qu\'avec un petit F5 de plus ça marche ? 🔄',
     'Est-ce qu\'on a pensé à vider le cache ? 🗑️',
     'Comment on augmente le PermGenSpace déjà ? 📈',
+    'Concours Twitter: 3 tshirts Quarkus World Tour à gagner ! 🎁',
     'Concours Twitter: 3 licences IntelliJ à gagner ! 🎁',
-    'Concours Twitter: une photo et les 3 handles @kanedafromparis @parisjug pour participer 🎉'
+    'Concours Twitter: 3 magazine Programmez! dossier Openshift à gagner ! 🎁',
+    'Concours Twitter: 1 tweet avec une photo, les mentions @Lilian_Benoit #parisjug pour participer 🎉'
 ];
 
 function updateTime() {
