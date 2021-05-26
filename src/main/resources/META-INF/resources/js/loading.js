@@ -79,5 +79,5 @@ function updateAction() {
 window.onload = _ => {
     window.setInterval(updateTime, 500);
     window.setInterval(drawLoading, 250);
-    window.setInterval(updateAction, 10_000);
+    window.setInterval(updateAction, 10000);
 }
