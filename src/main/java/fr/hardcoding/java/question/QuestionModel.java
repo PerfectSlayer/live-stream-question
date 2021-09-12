@@ -52,7 +52,19 @@ public class QuestionModel {
     }
 
     public void demote() {
+        this.promoted.answered = true;
         this.promoted = null;
+    }
+
+    public boolean toggleAnswered(UUID uuid) {
+        Optional<Question> questionOptional = this.questions.stream()
+                .filter(question -> question.uuid.equals(uuid))
+                .findAny();
+        if (questionOptional.isEmpty()) {
+            return false;
+        }
+        questionOptional.get().answered = !questionOptional.get().answered;
+        return true;
     }
 
     private void addHelpData() {
@@ -60,14 +72,16 @@ public class QuestionModel {
                 UUID.fromString("a5ef1d1b-4b5c-4c62-93bb-9ec589d3fadb"),
                 "Help bot",
                 "All pinned questions are saved here. You can promote one to show it in the live stream using the <i class=\"far fa-bookmark fa-lg\"></i> promote button or discard them the <i class=\"fas fa-trash-alt fa-lg\"></i> discard button. Note you can only promote one question at a time.",
-                "/img/bot.png"
+                "/img/bot.png",
+                true
         );
         this.questions.add(question);
         question = new Question(
                 UUID.fromString("48bed050-8a5d-4b3d-b0cf-77a897fca175"),
                 "Help bot",
                 "You can also manually add some questions using for form below. <i class=\"fas fa-arrow-down\"></i>",
-                "/img/bot.png"
+                "/img/bot.png",
+                true
         );
         this.questions.add(question);
     }
