@@ -44,7 +44,7 @@ public class ChatResource {
         Optional<ChatMessage> chatMessage = this.chatModel.getFromId(uuid);
         if (chatMessage.isPresent()) {
             ChatMessage message = chatMessage.get();
-            Question question = new Question(uuid, message.userName, message.text, message.profileUrl);
+            Question question = new Question(uuid, message.userName, message.text, message.profileUrl, false);
             this.questionModel.add(question);
             return Response.ok().build();
         } else {
