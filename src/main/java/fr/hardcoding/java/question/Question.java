@@ -15,7 +15,6 @@ public class Question {
     public boolean answered;
 
     public Question() {
-
     }
 
     public Question(UUID uuid, String userName, String text, String profileUrl, boolean answered) {
@@ -24,5 +23,9 @@ public class Question {
         this.text = text;
         this.profileUrl = profileUrl;
         this.answered = answered;
+    }
+
+    public Question(UUID uuid, String userName, String text, String profileUrl) {
+        this(uuid, userName, text, profileUrl, false);
     }
 }

@@ -41,8 +41,7 @@ public class QuestionResource {
                 UUID.randomUUID(),
                 data.userName,
                 data.text,
-                "/img/question.png",
-                false
+                "/img/question.png"
         );
         this.model.add(question);
         return question;

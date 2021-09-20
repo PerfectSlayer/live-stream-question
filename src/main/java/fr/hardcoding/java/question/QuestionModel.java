@@ -57,14 +57,14 @@ public class QuestionModel {
     }
 
     public boolean toggleAnswered(UUID uuid) {
-        Optional<Question> questionOptional = this.questions.stream()
+        return this.questions.stream()
                 .filter(question -> question.uuid.equals(uuid))
-                .findAny();
-        if (questionOptional.isEmpty()) {
-            return false;
-        }
-        questionOptional.get().answered = !questionOptional.get().answered;
-        return true;
+                .findFirst()
+                .map(question -> {
+                    question.answered = !question.answered;
+                    return question;
+                })
+                .isPresent();
     }
 
     private void addHelpData() {
