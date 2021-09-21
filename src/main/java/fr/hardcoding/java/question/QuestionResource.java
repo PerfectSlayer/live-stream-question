@@ -5,6 +5,7 @@ import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
+import javax.ws.rs.PATCH;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -44,6 +45,17 @@ public class QuestionResource {
         );
         this.model.add(question);
         return question;
+    }
+
+    @PATCH
+    @Path("/{id}/answered")
+    public Response toggleAnswered(@PathParam(value = "id") String id) {
+        UUID uuid = UUID.fromString(id);
+        if (this.model.toggleAnswered(uuid)) {
+            return Response.ok().build();
+        } else {
+            return Response.status(NOT_FOUND).build();
+        }
     }
 
     @DELETE

@@ -9,7 +9,7 @@ function promote(questionId) {
 function demote() {
     fetch("/promotion", {
         method: "DELETE"
-    }).then(_ => loadPromotion());
+    }).then(_ => loadQuestions()).then(_ => loadPromotion());
 }
 
 
