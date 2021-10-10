@@ -17,15 +17,15 @@ public class Question {
     public Question() {
     }
 
+    public Question(UUID uuid, String userName, String text, String profileUrl) {
+        this(uuid, userName, text, profileUrl, false);
+    }
+
     public Question(UUID uuid, String userName, String text, String profileUrl, boolean answered) {
         this.uuid = uuid;
         this.userName = userName;
         this.text = text;
         this.profileUrl = profileUrl;
         this.answered = answered;
-    }
-
-    public Question(UUID uuid, String userName, String text, String profileUrl) {
-        this(uuid, userName, text, profileUrl, false);
     }
 }

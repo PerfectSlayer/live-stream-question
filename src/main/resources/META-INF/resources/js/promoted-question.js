@@ -3,15 +3,16 @@ const promotedQuestionDiv = $('#promotedQuestion');
 function promote(questionId) {
     fetch("/promotion/" + questionId, {
         method: "POST"
-    }).then(_ => loadPromotion());
+    })
+        .then(_ => loadQuestions())
+        .then(_ => loadPromotion());
 }
 
 function demote() {
     fetch("/promotion", {
         method: "DELETE"
-    }).then(_ => loadQuestions()).then(_ => loadPromotion());
+    }).then(_ => loadPromotion());
 }
-
 
 function loadPromotion() {
     fetch("/promotion").then(response => {

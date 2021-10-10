@@ -48,11 +48,11 @@ public class QuestionModel {
             return false;
         }
         this.promoted = questionOptional.get();
+        this.promoted.answered = true;
         return true;
     }
 
     public void demote() {
-        this.promoted.answered = true;
         this.promoted = null;
     }
 
